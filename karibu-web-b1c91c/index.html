@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Brasas Bar Karibu · Propuesta web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Lato:wght@300;400;700&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#ffffff; --ink:#161412; --soft:#5b554e; --gold:#a8906a; --gold-deep:#8a744f;
+  --night:#0f0d0b; --line:#e7e2da; --cream:#f6f3ee;
+  --display:"Italiana","Didot","Bodoni 72",Georgia,serif;
+  --body:"Lato","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+.note{background:var(--night);color:#d9d1c4;font-size:12.5px;padding-block:8px;padding-inline:16px;text-align:center;letter-spacing:.02em}
+.note b{color:var(--gold);font-weight:700}
+
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1240px;margin:0 auto;padding-inline:16px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--display);font-size:32px;letter-spacing:.06em;line-height:1;text-decoration:none}
+.links{display:flex;gap:30px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.links a{text-decoration:none;padding-block:6px;border-bottom:1px solid transparent}
+.links a:hover{color:var(--gold-deep)}
+.links a[aria-current="page"]{border-bottom-color:var(--gold);color:var(--gold-deep)}
+.right{display:flex;align-items:center;gap:16px}
+.lang{font-size:12px;letter-spacing:.1em;color:var(--soft)}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:14px 26px;border:1px solid var(--ink);font-weight:700;cursor:pointer}
+.btn.light{background:#fff;color:var(--ink);border-color:#fff}
+.btn.ghost{background:transparent;color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.burger{display:none;background:none;border:0;padding:8px;cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0}
+@media (max-width:900px){
+  .links{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid var(--line);padding-inline:16px}
+  .links a{padding-block:16px;border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .burger{display:block}
+  .lang{display:none}
+  .right .btn{padding:11px 16px}
+}
+
+.page[hidden]{display:none!important}
+.shot{position:relative;overflow:hidden;background:#2a2622}
+.shot img{width:100%;height:100%;object-fit:cover}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:16px}
+
+.hero{height:min(86vh,740px);min-height:440px}
+.hero img{filter:brightness(.42) saturate(.8)}
+.hero .over{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding-inline:16px}
+.hero .big{font-family:var(--display);font-size:clamp(62px,13vw,168px);letter-spacing:.08em;line-height:.9;margin:0;font-weight:400}
+.hero .small{font-size:clamp(12px,1.4vw,15px);letter-spacing:.34em;text-transform:uppercase;margin-top:18px;color:#efe7da}
+.hero.short{height:min(56vh,480px);min-height:320px}
+.hero.short .big{font-size:clamp(54px,10vw,120px)}
+
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-block:96px}
+.intro h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.4vw,58px);line-height:1.05;margin:0 0 30px;text-transform:uppercase;letter-spacing:.02em;text-wrap:balance}
+.intro h2 .g{color:var(--gold);display:inline-block;border-bottom:3px solid var(--gold);padding-bottom:4px;margin-bottom:6px}
+.intro p{max-width:48ch;color:var(--soft);margin:0 0 14px}
+.intro .shot{aspect-ratio:4/5}
+.intro.flip .shot{order:-1}
+@media (max-width:820px){.intro{grid-template-columns:1fr;gap:34px;padding-block:60px}.intro.flip .shot{order:0}}
+
+.band{height:min(66vh,540px);min-height:340px}
+.band img{filter:brightness(.45)}
+.band .over{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding-inline:16px}
+.kicker{font-family:var(--display);color:var(--gold);font-size:clamp(32px,5vw,64px);line-height:1;text-transform:uppercase;letter-spacing:.03em}
+.headline{font-family:var(--display);font-size:clamp(42px,7.5vw,104px);line-height:1;text-transform:uppercase;letter-spacing:.03em;margin:6px 0 0;font-weight:400}
+
+.section-title{font-family:var(--display);color:var(--gold);font-weight:400;text-align:center;font-size:clamp(38px,6vw,80px);text-transform:uppercase;letter-spacing:.03em;margin:0;padding-block:84px 42px;line-height:1}
+
+.dish{display:grid;grid-template-columns:1.25fr 1fr;background:var(--night);color:#efe7da}
+.dish .shot{min-height:440px}
+.dish .txt{padding:56px 48px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.dish h3{font-family:var(--display);font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.05;margin:0;text-transform:uppercase;color:#fff}
+.dish p{margin:0;color:#cfc6b8;max-width:44ch}
+.price{font-family:var(--display);font-size:30px;color:var(--gold)}
+.proof{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+@media (max-width:820px){.dish{grid-template-columns:1fr}.dish .shot{min-height:300px}.dish .txt{padding:40px 20px}}
+
+.chef{max-width:1240px;margin:0 auto;padding-inline:16px}
+.chef .shot{height:min(62vh,520px);min-height:360px}
+.chef .shot img{filter:grayscale(1) brightness(.5)}
+.chef .over{position:absolute;right:0;bottom:0;z-index:2;color:#fff;text-align:right;padding:40px 44px;max-width:640px}
+.chef h3{font-family:var(--display);font-weight:400;font-size:clamp(38px,5vw,64px);margin:0 0 12px;line-height:1;text-transform:uppercase}
+.chef p{margin:0;font-size:15px;color:#e8e2d8}
+.chef .todo{color:#d9c49b}
+@media (max-width:820px){.chef .over{padding:24px 20px;max-width:none}}
+
+.menu-band{margin-top:96px}
+.menu-band .bg{position:absolute;inset:0}
+.menu-band .bg img{filter:brightness(.35)}
+.menu-in{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:88px 16px;display:grid;grid-template-columns:1fr 1fr;gap:48px;color:#fff}
+.menu-in h3{font-family:var(--display);font-weight:400;color:var(--gold);font-size:clamp(48px,7vw,92px);margin:0;line-height:1;text-transform:uppercase}
+.menu-in .lead{color:#e8e2d8;max-width:42ch;margin:18px 0 28px}
+.items{list-style:none;margin:0;padding:0}
+.items li{display:grid;grid-template-columns:1fr auto;gap:20px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.18);font-size:15px}
+.items li span{font-family:var(--display);color:var(--gold);font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:820px){.menu-in{grid-template-columns:1fr;padding-block:60px}}
+
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-block:96px}
+.three article{display:flex;flex-direction:column;gap:14px}
+.three .shot{aspect-ratio:3/2}
+.three h4{font-family:var(--display);font-weight:400;font-size:30px;margin:6px 0 0;text-transform:uppercase;line-height:1.1}
+.three p{margin:0;color:var(--soft);font-size:15px}
+@media (max-width:820px){.three{grid-template-columns:1fr;padding-block:60px}}
+
+.award{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.award-in{max-width:1240px;margin:0 auto;padding:52px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+.award img{width:112px;height:auto}
+.award .q{font-family:var(--display);font-size:clamp(26px,3vw,38px);line-height:1.2;margin:0}
+.award .n{text-align:right}
+.award .n b{display:block;font-family:var(--display);font-size:56px;font-weight:400;color:var(--gold);line-height:1}
+.award .n small{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+@media (max-width:820px){.award-in{grid-template-columns:1fr;text-align:center;justify-items:center}.award .n{text-align:center}}
+
+/* carta completa */
+.carta{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:72px 96px}
+.carta .intro-c{text-align:center;color:var(--soft);max-width:56ch;margin:0 auto 56px}
+.fam{display:grid;grid-template-columns:220px 1fr;gap:32px;padding-block:34px;border-top:1px solid var(--line)}
+.fam h3{font-family:var(--display);font-weight:400;font-size:34px;line-height:1.05;margin:0;text-transform:uppercase;color:var(--gold-deep)}
+.fam .sub{font-size:14px;color:var(--soft);margin:8px 0 0}
+.fam ul{list-style:none;margin:0;padding:0}
+.fam li{display:grid;grid-template-columns:1fr auto;gap:24px;padding:12px 0;border-bottom:1px dotted var(--line);align-items:baseline}
+.fam li:last-child{border-bottom:0}
+.fam li span{font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fam li em{font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);margin-left:8px;border:1px solid var(--gold);padding:1px 6px;vertical-align:2px}
+@media (max-width:720px){.fam{grid-template-columns:1fr;gap:14px}}
+.pizarra{background:var(--cream);padding:30px 32px;margin-top:40px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+.pizarra p{margin:0;max-width:52ch}
+.pizarra b{font-family:var(--display);font-weight:400;font-size:28px;text-transform:uppercase;display:block;color:var(--gold-deep)}
+
+/* contacto */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;padding-block:84px}
+.contact h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin:0 0 14px;font-weight:700}
+.contact p{margin:0 0 16px}
+.contact dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:15px}
+.contact dt{color:var(--soft)}
+.contact dd{margin:0;font-variant-numeric:tabular-nums}
+@media (max-width:820px){.contact{grid-template-columns:1fr;padding-block:60px}}
+.reserve{background:var(--night);color:#efe7da;text-align:center;padding:72px 16px}
+.reserve h3{font-family:var(--display);font-weight:400;color:#fff;font-size:clamp(36px,5vw,60px);margin:0 0 10px;text-transform:uppercase;line-height:1}
+.reserve p{margin:0 auto 26px;max-width:46ch;color:#cfc6b8}
+.reserve .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+footer{background:var(--night);color:#a79e90;font-size:13px;border-top:1px solid #26221e}
+.foot{max-width:1240px;margin:0 auto;padding:40px 16px;display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+.foot .logo{color:#fff;font-size:28px}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap}
+.foot nav a{text-decoration:none}
+.foot nav a:hover{color:#fff}
+
+.float{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+</style>
+</head>
+<body>
+
+
+<div class="note"><b>Versión preliminar</b> · Propuesta en la que está trabajando el equipo de diseño de El Método 360. Las fotos son provisionales.</div>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="#inicio">KARIBU</a>
+    <nav class="links" id="links" aria-label="Principal">
+      <a href="#inicio">Inicio</a><a href="#carta">Carta</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
+    </nav>
+    <div class="right">
+      <span class="lang">ES · EN</span>
+      <a class="btn" href="#contacto">Reservar</a>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- INICIO -->
+<div class="page" data-page="inicio">
+  <section class="shot hero">
+    <img src="img/sala.jpg" alt="Comedor de Brasas Bar Karibu">
+    <div class="over"><h1 class="big">KARIBU</h1><span class="small">Brasas Bar · Córdoba</span></div>
+  </section>
+
+  <section class="wrap intro">
+    <div>
+      <h2><span class="g">Carbón, brasa</span><br>y producto de temporada</h2>
+      <p>Estamos en la calle Claudio Marcelo, 6, en el centro de Córdoba, a dos pasos del Templo Romano. Carnes, pescado del día y arroces se hacen en el horno Josper, a la brasa de carbón.</p>
+      <p>En la pizarra están los cortes y el pescado de cada semana, y buena parte de la carta se puede pedir sin gluten.</p>
+      <p><a class="btn ghost" href="#nosotros">Conócenos</a></p>
+    </div>
+    <div class="shot"><img src="img/churrasco.jpg" alt="Churrasco a la brasa con patatas"></div>
+  </section>
+
+  <section class="shot band">
+    <img src="img/josper.jpg" alt="Horno Josper encendido">
+    <div class="over"><span class="kicker">Todo pasa</span><p class="headline">por el Josper</p></div>
+  </section>
+
+  <h2 class="section-title">La casa</h2>
+  <section class="dish" aria-label="Plato de la casa">
+    <div class="shot"><img src="img/magret.jpg" alt="Magret de pato laminado con manzana"></div>
+    <div class="txt">
+      <span class="proof">El plato que más nombran nuestros clientes</span>
+      <h3>Magret de pato a la brasa</h3>
+      <p>Con manzana caramelizada y salsa de soja y vino fino. El pato sale en 71 reseñas de Google.</p>
+      <span class="price">22,95 €</span>
+    </div>
+  </section>
+
+  <section class="shot menu-band">
+    <div class="bg"><img src="img/costillar.jpg" alt=""></div>
+    <div class="menu-in">
+      <div>
+        <h3>Carta</h3>
+        <p class="lead">Cocina de temporada. En la pizarra, los cortes de carne y el pescado del día. Pregunta por las opciones sin gluten.</p>
+        <a class="btn light" href="#carta">Ver carta</a>
+      </div>
+      <ul class="items">
+        <li>Alcachofas a la parrilla con pico de gallo<span>16,70</span></li>
+        <li>Secreto ibérico al Josper con guarnición<span>18,90</span></li>
+        <li>Entrecot a la brasa<span>22,00</span></li>
+        <li>Gambón del Pacífico a la brasa<span>15,60</span></li>
+        <li>Arroz meloso de secreto y setas<span>14,50</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="award" aria-label="Reconocimientos">
+    <div class="award-in">
+      <img src="img/tc.png" alt="Tripadvisor Travellers' Choice 2026">
+      <p class="q">Travellers' Choice 2026 de Tripadvisor.</p>
+      <div class="n"><b>4,6</b><small>en Google · más de 600 reseñas</small></div>
+    </div>
+  </section>
+
+  <section class="reserve">
+    <h3>Reserva tu mesa</h3>
+    <p>Reserva por WhatsApp o por teléfono. Los fines de semana conviene reservar.</p>
+    <div class="row"><a class="btn light" href="https://wa.me/34641004970" target="_blank" rel="noopener">Reservar por WhatsApp</a><a class="btn ghost" style="color:#fff;border-color:#fff" href="#contacto">Horario y dirección</a></div>
+  </section>
+</div>
+
+<!-- CARTA -->
+<div class="page" data-page="carta" hidden>
+  <section class="shot hero short">
+    <img src="img/costillar.jpg" alt="Carne a la brasa">
+    <div class="over"><h1 class="big">CARTA</h1><span class="small">Cocina de temporada a la brasa</span></div>
+  </section>
+
+  <section class="carta">
+    <p class="intro-c">Carta de verano, de ejemplo para esta propuesta. Pregunta en sala qué platos se pueden pedir sin gluten.</p>
+
+    <div class="fam"><div><h3>Entrantes</h3><p class="sub">Para compartir.</p></div><ul>
+      <li>Gambas Karibu, las pil-pil de toda la vida<span>10,80</span></li>
+      <li>Huevos en cocotte con setas y trufa negra<span>5,20</span></li>
+      <li>Ensaladilla rusa de la casa con atún y langostino<span>10,80</span></li>
+      <li>Patatas baby asadas con salsa bravísima<span>10,20</span></li>
+      <li>Alcachofas a la parrilla con pico de gallo<span>16,70</span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Ensaladas</h3><p class="sub">De temporada.</p></div><ul>
+      <li>Aguacate a la parrilla, atún curado, naranja, cebolla encurtida y vinagreta de nueces y mostaza<span>13,90</span></li>
+      <li>Sandía con rúcula y queso feta<span>8,50</span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Guisos</h3><p class="sub">Con salsa para mojar pan.</p></div><ul>
+      <li>Guisantes salteados con gambas y almejas<span>13,90</span></li>
+      <li>Habitas salteadas con berberechos y calamarcitos<span>14,90</span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Carne</h3><p class="sub">Más cortes en la pizarra.</p></div><ul>
+      <li>Magret de pato a la brasa con manzana caramelizada y salsa de soja y vino fino<span>22,95</span></li>
+      <li>Secreto ibérico al Josper con su guarnición<span>18,90</span></li>
+      <li>Entrecot a la brasa<span>22,00</span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Pescado y marisco</h3><p class="sub">Las especialidades, en la pizarra.</p></div><ul>
+      <li>Pescado del día a la brasa<span>Mercado</span></li>
+      <li>Gambón del Pacífico a la brasa<span>15,60</span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Arroces</h3><p class="sub">Cocinados con carbón.</p></div><ul>
+      <li>Arroz meloso de secreto y setas<span>14,50</span></li>
+      <li>Arroz meloso con trufa y setas<span>14,00</span></li>
+      <li>Paellas a la brasa, tipos en la pizarra<span>Mercado</span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Postres</h3><p class="sub">Caseros.</p></div><ul>
+      <li>Brownie de chocolate negro con cardamomo y kumquat<span>5,60</span></li>
+      <li>Tarta de queso sin lactosa con confitura de chirivía<span>5,60</span></li>
+    </ul></div>
+
+    <div class="pizarra">
+      <p><b>La pizarra</b>Cada semana, cortes de carne, pescado y paellas a la brasa que no están en la carta. Pregunta en sala o por WhatsApp.</p>
+      <a class="btn" href="https://wa.me/34641004970" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+    </div>
+  </section>
+</div>
+
+<!-- NOSOTROS -->
+<div class="page" data-page="nosotros" hidden>
+  <section class="shot hero short">
+    <img src="img/josper.jpg" alt="Horno Josper">
+    <div class="over"><h1 class="big">NOSOTROS</h1><span class="small">Brasa en el centro de Córdoba</span></div>
+  </section>
+
+  <section class="wrap intro flip">
+    <div class="shot"><img src="img/sala.jpg" alt="Comedor de Karibu"></div>
+    <div>
+      <h2><span class="g">Un bar de brasas</span><br>en Claudio Marcelo</h2>
+      <p>Karibu tiene comedor, mesas altas y barra, a dos pasos del Templo Romano.</p>
+      <p>La cocina gira alrededor del horno Josper: carnes, pescado, verduras y arroces al carbón, con producto de temporada.</p>
+    </div>
+  </section>
+
+  <section class="chef">
+    <div class="shot">
+      <img src="img/josper.jpg" alt="">
+      <div class="over">
+        <h3>Luis Ezqueta</h3>
+        <p>Dueño y cocinero de Karibu. <span class="todo">Aquí van dos líneas tuyas: dónde aprendiste y por qué la brasa.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap three">
+    <article>
+      <div class="shot"><img src="img/magret.jpg" alt="Magret de pato"></div>
+      <h4>El magret</h4>
+      <p>El plato que más nombran nuestros clientes en las reseñas.</p>
+    </article>
+    <article>
+      <div class="shot"><img src="img/cogollo.jpg" alt="Cogollo a la brasa con sardina"></div>
+      <h4>Sin gluten</h4>
+      <p>Somos de la Red Córdoba sin Gluten. Pregúntanos qué platos se pueden adaptar.</p>
+    </article>
+    <article>
+      <div class="shot"><img src="img/gambas.jpg" alt="Langostinos a la brasa"></div>
+      <h4>La pizarra</h4>
+      <p>Cortes, pescado y paellas a la brasa que cambian cada semana.</p>
+    </article>
+  </section>
+
+  <section class="award" aria-label="Reconocimientos">
+    <div class="award-in">
+      <img src="img/tc.png" alt="Tripadvisor Travellers' Choice 2026">
+      <p class="q">Travellers' Choice 2026 de Tripadvisor.</p>
+      <div class="n"><b>4,6</b><small>en Google · más de 600 reseñas</small></div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACTO -->
+<div class="page" data-page="contacto" hidden>
+  <section class="shot hero short">
+    <img src="img/sala.jpg" alt="Comedor de Karibu">
+    <div class="over"><h1 class="big">CONTACTO</h1><span class="small">Reservas y horario</span></div>
+  </section>
+
+  <section class="wrap contact">
+    <div>
+      <h5>Dónde estamos</h5>
+      <p>C/ Claudio Marcelo, 6<br>Córdoba</p>
+      <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Brasas+Bar+Karibu+Claudio+Marcelo+6+C%C3%B3rdoba" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+    <div>
+      <h5>Horario</h5>
+      <dl>
+        <dt>Mié y jue</dt><dd>13:00-16:00 · 20:00-23:00</dd>
+        <dt>Vie y sáb</dt><dd>13:00-23:00</dd>
+        <dt>Domingo</dt><dd>13:00-16:00 · 20:00-23:00</dd>
+        <dt>Lun y mar</dt><dd>Cerrado</dd>
+      </dl>
+    </div>
+    <div>
+      <h5>Reservas</h5>
+      <p>WhatsApp 641 004 970<br>Teléfono 857 870 455<br>info@brasasbarkaribu.com</p>
+      <a class="btn" href="https://wa.me/34641004970" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+    </div>
+  </section>
+
+  <section class="reserve">
+    <h3>Grupos y celebraciones</h3>
+    <p>Para grupos tenemos menú propio. Escríbenos y te lo mandamos.</p>
+    <div class="row"><a class="btn light" href="https://wa.me/34641004970" target="_blank" rel="noopener">Pedir el menú de grupos</a></div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="foot">
+    <span class="logo">KARIBU</span>
+    <nav aria-label="Pie"><a href="#inicio">Inicio</a><a href="#carta">Carta</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
+    <span>C/ Claudio Marcelo, 6 · Córdoba · Aceptamos bitcoin</span>
+  </div>
+</footer>
+
+<a class="btn float" href="https://wa.me/34641004970" target="_blank" rel="noopener">Reservar</a>
+
+<script>
+const pages=[...document.querySelectorAll('.page')];
+const navLinks=[...document.querySelectorAll('.links a')];
+const links=document.getElementById('links'), burger=document.getElementById('burger');
+function show(){
+  const id=(location.hash||'#inicio').slice(1);
+  const target=pages.some(p=>p.dataset.page===id)?id:'inicio';
+  pages.forEach(p=>p.hidden=p.dataset.page!==target);
+  navLinks.forEach(a=>{ if(a.getAttribute('href')==='#'+target) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  links.classList.remove('open'); burger.setAttribute('aria-expanded','false');
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',show);
+burger.addEventListener('click',()=>{const o=links.classList.toggle('open');burger.setAttribute('aria-expanded',o?'true':'false');});
+show();
+</script>
+
+</body>
+</html>
