@@ -135,6 +135,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .fam li span{font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
 .fam li em{font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);margin-left:8px;border:1px solid var(--gold);padding:1px 6px;vertical-align:2px}
 @media (max-width:720px){.fam{grid-template-columns:1fr;gap:14px}}
+.carta.grupos{padding-top:0}
+.grupos .intro-c{margin-bottom:36px}
+.grupos h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,5vw,56px);text-transform:uppercase;text-align:center;color:var(--gold-deep);margin:0 0 12px;line-height:1}
+.fam h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:22px 0 4px;font-weight:600}
+.fam h4:first-child{margin-top:0}
+.fam li:has(h4){display:block;border-bottom:0;padding:0}
+.fam li:has(h4)+li{padding-top:6px}
+.fam .precio{font-family:var(--display);font-size:30px;color:var(--ink);margin:10px 0 0}
+.incluye{background:var(--cream);padding:26px 32px;margin-top:32px}
+.incluye b{font-family:var(--display);font-weight:400;font-size:26px;text-transform:uppercase;display:block;color:var(--gold-deep);margin-bottom:8px}
+.incluye ul{margin:0;padding-left:18px}
 .pizarra{background:var(--cream);padding:30px 32px;margin-top:40px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
 .pizarra p{margin:0;max-width:52ch}
 .pizarra b{font-family:var(--display);font-weight:400;font-size:28px;text-transform:uppercase;display:block;color:var(--gold-deep)}
@@ -330,6 +341,59 @@ footer{background:var(--night);color:#a79e90;font-size:13px;border-top:1px solid
       <a class="btn" href="https://wa.me/34641004970" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
     </div>
   </section>
+
+  <section class="carta grupos" aria-labelledby="grupos-t">
+    <h2 id="grupos-t">Menús de grupo</h2>
+    <p class="intro-c">Tres menús para grupos. Los platos para compartir salen al centro de la mesa, uno de cada por cada cuatro comensales. La bebida va incluida.</p>
+
+    <div class="fam"><div><h3>Karibu Esencial</h3><p class="precio">30 €</p><p class="sub">Por persona. Todo para compartir.</p></div><ul>
+      <li>Ensaladilla rusa de la casa con atún y langostinos<em>Gluten opcional</em><span></span></li>
+      <li>Patatas baby asadas con nuestra salsa bravísima<span></span></li>
+      <li>Croquetas caseras<span></span></li>
+      <li>Cogollos a la brasa con sardina ahumada, salsa César, granada y huevas de salmón<span></span></li>
+      <li>Arroz meloso de setas y trufa<span></span></li>
+      <li>Secreto ibérico seleccionado a la brasa<span></span></li>
+      <li>Surtido de postres: brownie de chocolate con cardamomo y tarta de manzana<span></span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Brasas Tradición</h3><p class="precio">40 €</p><p class="sub">Por persona. Entrantes para compartir y principal a elegir.</p></div><ul>
+      <li><h4>Para compartir</h4></li>
+      <li>Ensaladilla rusa de la casa con atún y langostinos<em>Gluten opcional</em><span></span></li>
+      <li>Mejillones al carbón con aroma de apio<span></span></li>
+      <li>Gambas Karibu, las pil-pil de toda la vida<span></span></li>
+      <li>Cremoso de hummus de anacardo con secreto salteado y marinado a la turca<em>Gluten opcional</em><span></span></li>
+      <li><h4>A elegir</h4></li>
+      <li>Entrecot de ternera a la brasa, o pescado del día a la parrilla<span></span></li>
+      <li><h4>Postre</h4></li>
+      <li>Brownie de chocolate con cardamomo y kumquat, o café<span></span></li>
+    </ul></div>
+
+    <div class="fam"><div><h3>Gourmet Josper</h3><p class="precio">46 €</p><p class="sub">Por persona. Entrantes para compartir y principal a elegir.</p></div><ul>
+      <li><h4>Para compartir</h4></li>
+      <li>Aguacate a la parrilla con atún curado, rúcula, naranja y vinagreta de nueces<span></span></li>
+      <li>Alcachofas a la brasa con pico de gallo<span></span></li>
+      <li>Gambas Karibu, las pil-pil de toda la vida<span></span></li>
+      <li>Puerro confitado y asado con panceta ibérica a la brasa, anguila ahumada y ensalada de canónigos y manzana verde<span></span></li>
+      <li><h4>A elegir</h4></li>
+      <li>Magret de pato a la brasa con manzana caramelizada y salsa de soja y vino fino, o corvina a la brasa con kale salteado, espárragos y puré ahumado<span></span></li>
+      <li><h4>Postre</h4></li>
+      <li>Tarta de queso con confitura de chirivía, o café<span></span></li>
+    </ul></div>
+
+    <div class="incluye">
+      <b>Incluido en los tres menús</b>
+      <ul>
+        <li>Pan y agua.</li>
+        <li>Una botella de vino tinto o blanco de la casa por cada tres comensales.</li>
+        <li>Tres copas de cerveza o refrescos por persona.</li>
+      </ul>
+    </div>
+
+    <div class="pizarra">
+      <p><b>Reserva de grupo</b>Dinos cuántos sois, el día y el menú, y te confirmamos la mesa. Si alguien tiene alergias, avísanos al reservar.</p>
+      <a class="btn" href="https://wa.me/34641004970" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+    </div>
+  </section>
 </div>
 
 <!-- NOSOTROS -->
@@ -471,8 +535,8 @@ footer{background:var(--night);color:#a79e90;font-size:13px;border-top:1px solid
 
   <section class="reserve">
     <h3>Grupos y celebraciones</h3>
-    <p>Para grupos tenemos menú propio. Escríbenos y te lo mandamos.</p>
-    <div class="row"><a class="btn light" href="https://wa.me/34641004970" target="_blank" rel="noopener">Pedir el menú de grupos</a></div>
+    <p>Tres menús de grupo, de 30 a 46 € por persona, con la bebida incluida.</p>
+    <div class="row"><a class="btn light" href="#carta">Ver los menús de grupo</a><a class="btn ghost" style="color:#fff;border-color:#fff" href="https://wa.me/34641004970" target="_blank" rel="noopener">Reservar por WhatsApp</a></div>
   </section>
 </div>
 </main>
